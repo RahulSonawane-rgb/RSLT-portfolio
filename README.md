@@ -72,6 +72,7 @@ This repository houses the frontend architecture, designed to simulate a cinemat
 
 ## 📂 Project Structure
 
+```
 rslt-portfolio/
 ├── public/              # Static Assets (Videos, Logos)
 ├── src/
@@ -79,6 +80,7 @@ rslt-portfolio/
 │   ├── data/            # Static Data / Admin Defaults
 │   └── App.tsx          # Main Route Logic
 └── index.html           # Entry Point
+```
 ---
 
 ## 📝 License

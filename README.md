@@ -1,75 +1,92 @@
-# React + TypeScript + Vite
+# RSLT | Visual Strategy & Production Architecture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **"We don't just make content. We engineer growth."**
 
-Currently, two official plugins are available:
+![RSLT Build Status](https://img.shields.io/badge/Build-Production%20Ready-gold?style=for-the-badge)
+![Tech Stack](https://img.shields.io/badge/Stack-React%20%7C%20TypeScript%20%7C%20Vite-black?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-gray?style=for-the-badge)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📡 Overview
 
-## React Compiler
+**RSLT (Result Media)** is a high-performance portfolio and lead-generation platform for a Mumbai-based visual strategy agency. 
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+This repository houses the frontend architecture, designed to simulate a cinematic experience (Cinematic UI) while maintaining blazing-fast load times (Vite/React). It features a custom "Admin-Free" CMS using local storage logic and a dual-channel notification system via EmailJS.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## ⚡ Key Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. The "Prime" UI System
+- **Cinematic Hero Section:** Custom Ken Burns effect with Framer Motion and physics-based light leaks.
+- **Dynamic Navbar:** Morphing UI that transitions from a transparent HUD to a floating glass capsule upon scroll.
+- **Live Camera Simulation:** Real-time recording timer and "REC" indicators to simulate a camera viewfinder.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 2. Performance Engineering
+- **Video Optimization:** Local asset delivery for zero-buffer playback (bypassing Instagram iframe blocks).
+- **Responsive Geometry:** Fluid typography scaling (`clamp()`) ensuring integrity from iPhone SE to 4K Monitors.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 3. Lead Architecture (EmailJS)
+- **Dual-Channel Notification:** - **Admin Channel:** Sends detailed technical brief + WhatsApp direct link to Agency Partners (Rahul & Shubham).
+  - **Client Channel:** Instantly dispatches a branded, HTML5 "Welcome Kit" email to the lead.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 4. Admin Lite
+- **Secure Route:** Hidden `/admin` route protected by hardcoded authentication.
+- **LocalStorage CMS:** Allows instant updating of portfolio links without code redeployment.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Core:** React 18, TypeScript, Vite
+* **Styling:** Tailwind CSS, Glassmorphism
+* **Animation:** Framer Motion (Orchestration & Gestures)
+* **Backend Services:** EmailJS (Serverless SMTP), React Router DOM
+
+---
+
+## 🚀 Installation & Setup
+
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/yourusername/rslt-portfolio.git](https://github.com/yourusername/rslt-portfolio.git)
+    cd rslt-portfolio
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment**
+    Update `src/components/Contact.tsx` with your EmailJS credentials:
+    * `SERVICE_ID`
+    * `PUBLIC_KEY`
+    * `TEMPLATE_ID`
+
+4.  **Run Development Server**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 📂 Project Structure
+
+rslt-portfolio/
+├── public/              # Static Assets (Videos, Logos)
+├── src/
+│   ├── components/      # Modular UI Components (Navbar, Hero, Work...)
+│   ├── data/            # Static Data / Admin Defaults
+│   └── App.tsx          # Main Route Logic
+└── index.html           # Entry Point
+---
+
+## 📝 License
+
+This project is proprietary to **RSLT Media**. 
+Code structure is open-sourced under the [MIT License](LICENSE). 
+Brand assets and video content are **Copyright © 2026 RSLT Media**.
+
+---
+
+*Engineered in India.*

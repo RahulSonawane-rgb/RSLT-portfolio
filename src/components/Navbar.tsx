@@ -66,7 +66,7 @@ const Navbar = () => {
             `}>
               <NavLink href="#work" text="WORK" />
               <NavLink href="#about" text="AGENCY" />
-              <NavLink href="#pricing" text="PRICING" />
+              {/* <NavLink href="#pricing" text="PRICING" /> */}
             </div>
           </div>
 
@@ -111,7 +111,7 @@ const Navbar = () => {
             <div className="flex flex-col gap-8 text-center z-10">
               <MobileLink href="#work" text="SELECTED WORK" onClick={() => setMobileMenuOpen(false)} index={0} />
               <MobileLink href="#about" text="THE AGENCY" onClick={() => setMobileMenuOpen(false)} index={1} />
-              <MobileLink href="#pricing" text="INVESTMENT" onClick={() => setMobileMenuOpen(false)} index={2} />
+              {/* <MobileLink href="#pricing" text="INVESTMENT" onClick={() => setMobileMenuOpen(false)} index={2} /> */}
               <MobileLink href="#contact" text="START PROJECT" onClick={() => setMobileMenuOpen(false)} index={3} />
             </div>
             

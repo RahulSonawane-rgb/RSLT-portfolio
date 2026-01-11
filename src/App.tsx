@@ -17,7 +17,7 @@ const Home = () => (
     {/* <Pricing /> */}
     <Contact />
     <footer className="py-8 text-center text-gray-600 text-sm border-t border-white/5 bg-prime-black">
-      &copy; {new Date().getFullYear()} RSLT Media. Mumbai.
+      &copy; {new Date().getFullYear()} RSLT Media. Jalgaon.
     </footer>
   </>
 );

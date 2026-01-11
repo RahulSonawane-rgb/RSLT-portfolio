@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Work from './components/Work';
-{/* import Pricing from './components/Pricing'; */}
+// import Pricing from './components/Pricing';
 import Agency from './components/Agency';
 import Contact from './components/Contact';
 import Admin from './components/Admin';

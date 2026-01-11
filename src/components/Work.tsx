@@ -1,46 +1,82 @@
 import { useState } from 'react';
 import { InstagramEmbed } from 'react-social-media-embed';
 import { reelLinks as defaultLinks } from '../data/reels'; 
-import { ArrowUpRight, Instagram } from 'lucide-react';
+import { ArrowUpRight, Zap, Share2, BarChart3, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// --- Sub-Component: The "Pro" Card ---
-const ReelCard = ({ link }: { link: string }) => {
-
+// --- Sub-Component: The "Smart Glass" Card ---
+const ProjectCard = ({ link, index }: { link: string, index: number }) => {
   return (
-    <div className="flex flex-col items-center group relative z-10">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="flex flex-col items-center group relative z-10 w-full"
+    >
       
-      {/* Decorative Glow Effect behind the card (Subtle) */}
-      <div className="absolute inset-0 bg-prime-gold/5 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-      {/* The Premium Glass Frame */}
-      {/* w-full and max-w ensures it fits on mobile but doesn't get too big on desktop */}
-      <div className="relative w-full max-w-[350px] p-2 bg-prime-charcoal/80 backdrop-blur-sm border border-white/10 rounded-[2.5rem] shadow-2xl transition-all duration-500 hover:border-prime-gold/40 hover:shadow-[0_0_30px_-5px_rgba(212,175,55,0.15)] hover:-translate-y-2">
-
-        {/* The Embed Container */}
-        {/* min-h ensures the card has height before video loads */}
-        <div className="overflow-hidden rounded-[2rem] bg-black min-h-[500px] flex justify-center items-center">
-          {/* We set width to '100%' so it fills our responsive container */}
-          <div className="w-full"> 
-             <InstagramEmbed 
-                url={link} 
-                width="100%" 
-                captioned={false}
-             />
-          </div>
+      {/* --- THE GLASS CONTAINER --- */}
+      {/* Max width set to typical phone width for perfect aspect ratio */}
+      <div className="relative w-full max-w-[360px] bg-[#0f0f0f] border border-white/10 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-prime-gold/40 hover:shadow-[0_0_40px_-10px_rgba(212,175,55,0.2)]">
+        
+        {/* Top "Sensor" Area (Futuristic Notch) */}
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/80 to-transparent z-20 pointer-events-none flex justify-between items-start p-5">
+            <div className="flex items-center gap-2">
+                <div className="w-1 h-1 bg-white/50 rounded-full" />
+                <span className="text-[9px] font-mono tracking-widest text-white/50">RSLT-{index + 1}</span>
+            </div>
+            <div className="px-2 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/5 flex items-center gap-1">
+                <Zap className="w-3 h-3 text-prime-gold fill-prime-gold" />
+                <span className="text-[8px] font-bold text-white">VIRAL</span>
+            </div>
         </div>
+
+        {/* The Video Area */}
+        <div className="relative bg-black min-h-[600px] flex justify-center items-center">
+            {/* Background Placeholder */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white/5 z-0">
+               <Play className="w-12 h-12 opacity-20" />
+            </div>
+
+            {/* The Embed */}
+            <div className="relative z-10 w-full h-full"> 
+               <InstagramEmbed 
+                 url={link} 
+                 width="100%" 
+                 captioned={false}
+                 style={{ background: 'transparent' }}
+               />
+            </div>
+        </div>
+
+        {/* Bottom "Smart Dock" (Overlay) */}
+        <div className="absolute bottom-4 left-4 right-4 h-14 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl z-20 flex items-center justify-between px-6 transition-all duration-300 group-hover:bg-black/80 group-hover:border-prime-gold/30">
+            
+            {/* Stat 1: Views (Fake Data for Vibe) */}
+            <div className="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity">
+                <BarChart3 className="w-4 h-4 text-white" />
+                <span className="text-[8px] font-mono text-gray-400">STATS</span>
+            </div>
+
+            {/* Center Action Button */}
+            <a 
+                href={link} 
+                target="_blank"
+                className="w-10 h-10 -mt-6 bg-prime-gold rounded-full flex items-center justify-center shadow-lg shadow-prime-gold/20 hover:scale-110 transition-transform"
+            >
+                <ArrowUpRight className="w-5 h-5 text-black" />
+            </a>
+
+            {/* Stat 2: Share */}
+            <div className="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity">
+                <Share2 className="w-4 h-4 text-white" />
+                <span className="text-[8px] font-mono text-gray-400">SHARE</span>
+            </div>
+        </div>
+
       </div>
 
-      {/* "View on App" Button (Appears on Hover) */}
-      <a 
-        href={link}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-6 flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-prime-dim opacity-0 transform translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 hover:text-white"
-      >
-        <Instagram className="w-3 h-3" />
-        VIEW ON INSTAGRAM
-      </a>
-    </div>
+    </motion.div>
   );
 };
 
@@ -58,50 +94,52 @@ const Work = () => {
   };
 
   return (
-    <section id="work" className="py-24 px-6 max-w-7xl mx-auto overflow-hidden">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-white/5 pb-8">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="h-[1px] w-8 bg-prime-gold"></span>
-            <span className="text-prime-gold text-xs font-bold tracking-widest">PORTFOLIO</span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white">
-            RECENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-prime-gold to-white/50">DROPS</span>
-          </h2>
-        </div>
+    <section id="work" className="relative py-24 px-4 md:px-8 bg-prime-black overflow-hidden">
+      
+      {/* Background: Geometric Lines */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         
-        <a 
-          href="https://www.instagram.com/rslt.creation/?utm_source=ig_web_button_share_sheet" 
-          target="_blank" 
-          className="hidden md:flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full hover:bg-prime-gold transition-all font-bold text-sm tracking-wide"
-        >
-          FOLLOW RSLT <ArrowUpRight className="w-4 h-4" />
-        </a>
-      </div>
-
-      {/* The Grid */}
-      {/* Centered on mobile, 2 cols on tablet, 3 on desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center">
-        {activeLinks.slice(0, visibleCount).map((link: string, index: number) => (
-           <ReelCard key={index} link={link} />
-        ))}
-      </div>
-
-      {/* Load More */}
-      {visibleCount < activeLinks.length && (
-        <div className="text-center mt-24">
-          <button 
-            onClick={showMore}
-            className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-prime-charcoal px-10 font-medium text-white transition-all duration-300 hover:bg-white hover:text-black border border-white/10"
+        {/* --- HEADER --- */}
+        <div className="text-center mb-20">
+          <motion.div 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-white/10 bg-white/5"
           >
-            <span className="mr-2 text-xs font-bold tracking-[0.2em]">LOAD ARCHIVES</span>
-            <div className="absolute right-0 translate-x-full transition-transform duration-300 group-hover:-translate-x-6">
-               <ArrowUpRight className="w-4 h-4" />
-            </div>
-          </button>
+             <span className="w-1.5 h-1.5 rounded-full bg-prime-gold animate-pulse"></span>
+             <span className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] text-gray-300 uppercase">Deployed Projects</span>
+          </motion.div>
+          
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter text-white leading-none">
+            Production <span className="text-transparent bg-clip-text bg-gradient-to-r from-prime-gold to-white/50">Feed.</span>
+          </h2>
+          <p className="mt-4 text-gray-400 text-xs md:text-sm font-light max-w-lg mx-auto">
+            We don't just capture moments; we capture audiences. <br className="hidden md:block"/> 
+            Vertical cinema designed to <span className="text-white font-bold">stop the scroll</span>.
+          </p>
         </div>
-      )}
+
+        {/* --- THE GRID --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+          {activeLinks.slice(0, visibleCount).map((link: string, index: number) => (
+             <ProjectCard key={index} link={link} index={index} />
+          ))}
+        </div>
+
+        {/* --- LOAD MORE --- */}
+        {visibleCount < activeLinks.length && (
+          <div className="text-center mt-20">
+            <button 
+              onClick={showMore}
+              className="relative px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black hover:border-white transition-all duration-300 group"
+            >
+              <span className="text-xs font-bold tracking-[0.2em]">VIEW ARCHIVES</span>
+            </button>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

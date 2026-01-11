@@ -117,7 +117,7 @@ const Navbar = () => {
             
             <div className="absolute bottom-12 text-prime-dim text-xs font-mono tracking-widest flex items-center gap-2">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              LIVE FEED • MUMBAI
+              LIVE FEED • JALGAON
             </div>
           </motion.div>
         )}
